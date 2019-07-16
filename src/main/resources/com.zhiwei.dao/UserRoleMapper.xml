@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiwei.dao.UserRoleMapper">
+    <resultMap type="com.zhiwei.pojo.Role" id="Role">
+        <id column="ID" property="id"  jdbcType="INTEGER"/>
+        <id column="NAME" property="name"  jdbcType="VARCHAR"/>
+        <id column="MEMO" property="memo" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findByUserName"  resultMap="Role">
+	  SELECT r.id,r.name,r.memo FROM t_role r
+        LEFT JOIN t_user_role ur ON(r.id = ur.rid)
+        LEFT JOIN t_user u ON(u.id = ur.user_id)
+        WHERE u.username = #{userName}
+    </select>
+
+</mapper>

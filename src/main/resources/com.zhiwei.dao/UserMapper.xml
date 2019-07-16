@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiwei.dao.UserMapper">
+    <resultMap type="com.zhiwei.pojo.User" id="User">
+        <id column="ID" property="id"  jdbcType="INTEGER"/>
+        <id column="USERNAME" property="userName"  jdbcType="VARCHAR"/>
+        <id column="PASSWORD" property="password" jdbcType="VARCHAR"/>
+        <id column="CREATE_TIME" property="createTime"  jdbcType="TIMESTAMP"/>
+        <id column="STATUS" property="status" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findByUserName"  resultMap="User">
+	  select * from t_user where USERNAME = #{userName}
+    </select>
+
+</mapper>

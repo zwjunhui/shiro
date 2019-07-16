@@ -1,0 +1,41 @@
+
+spring:
+  thymeleaf:
+    cache: false                  # 是否开启模板缓存，默认为：true，开发时关闭缓存，不然没法看到实时页面！
+    mode: HTML                    # 指定模板的模式，默认为：HTML
+    encoding: UTF-8               # 指定模板的编码，默认为：UTF-8
+    prefix: classpath:/templates/ # 指定模板的前缀，默认为：classpath:/templates/
+    suffix: .html                 # 指定模板的后缀，默认为：.html
+    servlet:
+      content-type: text/html
+  datasource:
+#    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/shiro?serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+#   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#    schema:
+#      - classpath:department.sql
+mybatis:
+  # type-aliases扫描路径
+  type-aliases-package: com.zhiwei.pojo
+  # com.zhiwei.dao xml实现扫描路径
+  mapper-locations: classpath:com.zhiwei.dao/*.xml
